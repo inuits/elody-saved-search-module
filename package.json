@@ -2,7 +2,6 @@
   "name": "saved-search-module",
   "version": "0.0.1",
   "license": "MIT",
-  "private": true,
   "main":"./savedSearchModule.ts",
   "dependencies": {
     "graphql-modules": "^2.1.0"
