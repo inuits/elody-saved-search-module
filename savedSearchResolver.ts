@@ -1,13 +1,13 @@
-import { Resolvers } from '../../generated-types/type-defs';
-import { ContextValue } from '../../types';
+import { Resolvers } from "../../generated-types/type-defs";
+import { ContextValue } from "base-graphql";
 
 export const savedSearchResolver: Resolvers<ContextValue> = {
   Mutation: {
     savedSearches: async (_source, {}, { dataSources }) => {
       return dataSources.CollectionAPI.getSavedSearches(5, 1, {
-        value: '',
+        value: "",
         isAsc: false,
-        key: '',
+        key: "",
       });
     },
     createSavedSearch: async (
