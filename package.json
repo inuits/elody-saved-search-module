@@ -1,13 +1,17 @@
 {
   "name": "saved-search-module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "main":"./savedSearchModule.ts",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "graphql-modules": "^2.1.0",
     "base-graphql": "^0.0.1"
   },
   "publishConfig": {
+    "main": "./dist/modules/savedSearchModule/savedSearchModule.js",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
