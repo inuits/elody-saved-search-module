@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "graphql-modules": "^2.1.0",
-    "base-graphql": "^0.0.4"
+    "base-graphql": "*"
   },
   "publishConfig": {
     "main": "./dist/modules/savedSearchModule/savedSearchModule.js",
