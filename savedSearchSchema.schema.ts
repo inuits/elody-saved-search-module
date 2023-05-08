@@ -1,4 +1,4 @@
-import { gql } from "graphql-modules"
+import { gql } from "graphql-modules";
 
 export const savedSearchSchema = gql`
   type MinMax {
@@ -39,7 +39,6 @@ export const savedSearchSchema = gql`
     type: String!
     metadata(keys: [String]!, excludeOrInclude: ExcludeOrInclude!): [Metadata]!
     media: Media
-    form: Form
     teaserMetadata: [MetadataAndRelation]
     permission: [Permission]
     intialValues: IntialValues!
@@ -85,4 +84,4 @@ export const savedSearchSchema = gql`
     ): SavedSearchedEntity
     getSavedSearchById(uuid: String!): SavedSearchedEntity
   }
-`
+`;
