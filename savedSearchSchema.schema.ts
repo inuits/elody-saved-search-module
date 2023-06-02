@@ -46,7 +46,7 @@ export const savedSearchSchema = gql`
     permission: [Permission]
     intialValues: IntialValues!
     entityView: ColumnList!
-    advancedFilters: advancedFilters
+    advancedFilters: AdvancedFilters
   }
 
   type SavedSearchesMetadata {
