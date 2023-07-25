@@ -47,6 +47,7 @@ export const savedSearchSchema = gql`
     intialValues: IntialValues!
     entityView: ColumnList!
     advancedFilters: AdvancedFilters
+    sortOptions: SortOptions
   }
 
   type SavedSearchesMetadata {
