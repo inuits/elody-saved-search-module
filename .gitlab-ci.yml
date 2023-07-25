@@ -10,5 +10,5 @@ include:
 
 variables:
   GRAPHQL_IMAGE: 'pza/dams-graphql'
-  MOVE_SCHEMA: 'advancedFilterSchema.schema.ts'
+  MOVE_SCHEMA: 'savedSearchSchema.schema.ts'
 
