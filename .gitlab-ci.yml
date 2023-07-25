@@ -7,3 +7,8 @@ include:
   - project: 'inuits/gitlab-ci/pipeline-templates'
     file: 'graphql-module-pipeline.yml'
     ref: 'master'
+
+variables:
+  GRAPHQL_IMAGE: 'pza/dams-graphql'
+  MOVE_SCHEMA: 'advancedFilterSchema.schema.ts'
+
