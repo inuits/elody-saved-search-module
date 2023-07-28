@@ -17,9 +17,6 @@ export const savedSearchSchema = gql`
   }
 
   enum SearchInputType {
-    AdvancedInputMediaFilesType
-    AdvancedInputType
-    SimpleInputtype
     AdvancedSavedSearchType
   }
 
