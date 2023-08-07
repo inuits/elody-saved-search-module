@@ -1,6 +1,6 @@
 {
   "name": "saved-search-module",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "license": "MIT",
   "main":"./savedSearchModule.ts",
   "scripts": {
