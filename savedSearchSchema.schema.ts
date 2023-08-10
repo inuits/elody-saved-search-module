@@ -42,7 +42,7 @@ export const savedSearchSchema = gql`
     teaserMetadata: [MetadataAndRelation]
     permission: [Permission]
     intialValues: IntialValues!
-    relationValues: RelationValues!
+    relationValues: RelationValues
     entityView: ColumnList!
     advancedFilters: AdvancedFilters
     sortOptions: SortOptions
