@@ -37,6 +37,7 @@ export const savedSearchSchema = gql`
     metadata(
       keys: [String]!
       excludeOrInclude: ExcludeOrInclude!
+      options: [teaserMetadataOptions]
     ): [MetadataAndRelation]
     media: Media
     teaserMetadata: [MetadataAndRelation]
