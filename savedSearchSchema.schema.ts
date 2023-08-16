@@ -40,7 +40,7 @@ export const savedSearchSchema = gql`
       options: [teaserMetadataOptions]
     ): [MetadataAndRelation]
     media: Media
-    teaserMetadata: [MetadataAndRelation]
+    teaserMetadata: teaserMetadata
     permission: [Permission]
     intialValues: IntialValues!
     relationValues: RelationValues
