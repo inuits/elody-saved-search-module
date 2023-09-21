@@ -34,11 +34,6 @@ export const savedSearchSchema = gql`
     id: String!
     uuid: String!
     type: String!
-    metadata(
-      keys: [String]!
-      excludeOrInclude: ExcludeOrInclude!
-      options: [teaserMetadataOptions]
-    ): [MetadataAndRelation]
     media: Media
     teaserMetadata: teaserMetadata
     permission: [Permission]
