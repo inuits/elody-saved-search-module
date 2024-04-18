@@ -29,14 +29,12 @@ export const savedSearchSchema = gql`
   type SavedSearchedEntity implements Entity {
     _key: String
     definition: [Definition]
-    # metadata: [SavedSearchesMetadata]!
     user: String
     id: String!
     uuid: String!
     type: String!
     media: Media
     teaserMetadata: teaserMetadata
-    permission: [Permission]
     intialValues: IntialValues!
     allowedViewModes: AllowedViewModes
     relationValues: RelationValues

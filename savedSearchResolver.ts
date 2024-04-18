@@ -13,7 +13,7 @@ export const savedSearchResolver: Resolvers<ContextValue> = {
     createSavedSearch: async (
       _source,
       { savedSearchInput },
-      { dataSources }
+      { dataSources },
     ) => {
       return dataSources.CollectionAPI.createSavedSearch(savedSearchInput);
     },
@@ -23,18 +23,18 @@ export const savedSearchResolver: Resolvers<ContextValue> = {
     patchSavedSearchTitle: async (
       _source,
       { uuid, title },
-      { dataSources }
+      { dataSources },
     ) => {
       return dataSources.CollectionAPI.patchSavedSearchTitle(uuid, title);
     },
     patchSavedSearchDefinition: async (
       _source,
       { uuid, definition },
-      { dataSources }
+      { dataSources },
     ) => {
       return dataSources.CollectionAPI.patchSavedSearchDefinition(
         uuid,
-        definition
+        definition,
       );
     },
     getSavedSearchById: async (_source, { uuid }, { dataSources }) => {
