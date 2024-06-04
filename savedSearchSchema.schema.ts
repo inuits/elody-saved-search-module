@@ -33,7 +33,6 @@ export const savedSearchSchema = gql`
     id: String!
     uuid: String!
     type: String!
-    media: Media
     teaserMetadata: teaserMetadata
     intialValues: IntialValues!
     allowedViewModes: AllowedViewModes
