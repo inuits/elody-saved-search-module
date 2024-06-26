@@ -42,6 +42,7 @@ export const savedSearchSchema = gql`
     sortOptions: SortOptions
     createFormFields: FormFields
     bulkOperationOptions: BulkOperationOptions
+    deleteQueryOptions: DeleteQueryOptions
   }
 
   type SavedSearchesMetadata {
