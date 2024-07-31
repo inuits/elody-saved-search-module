@@ -1,6 +1,6 @@
 {
   "name": "saved-search-module",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "license": "MIT",
   "main":"./savedSearchModule.ts",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "publishConfig": {
     "main": "./dist/dams/inuits-dams-saved-search-module/savedSearchModule.js",
-    "types": "./types/dams/inuits-dams-saved-search-module/main.d.ts",
+    "types": "./types/dams/inuits-dams-saved-search-module/savedSearchModule.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
