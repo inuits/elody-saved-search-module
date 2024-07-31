@@ -22,6 +22,7 @@
   },
   "publishConfig": {
     "main": "./dist/dams/inuits-dams-saved-search-module/savedSearchModule.js",
+    "types": "./types/dams/inuits-dams-saved-search-module/main.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
