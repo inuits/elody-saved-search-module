@@ -34,7 +34,7 @@ export const savedSearchSchema = gql`
     limit: Int
   }
 
-  type SavedSearchedEntity implements Entity {
+  type SavedSearch on Entity {
     _key: String
     definition: [Definition]
     user: String
@@ -83,13 +83,13 @@ export const savedSearchSchema = gql`
 
   type Mutation {
     savedSearches: EntitiesResults
-    createSavedSearch(savedSearchInput: SavedSearchInput!): SavedSearchedEntity
+    createSavedSearch(savedSearchInput: SavedSearchInput!): SavedSearch
     deleteSavedSearch(uuid: String!): String
-    patchSavedSearchTitle(uuid: String!, title: String!): SavedSearchedEntity
+    patchSavedSearchTitle(uuid: String!, title: String!): SavedSearch
     patchSavedSearchDefinition(
       uuid: String!
       definition: [FilterInput!]!
-    ): SavedSearchedEntity
-    getSavedSearchById(uuid: String!): SavedSearchedEntity
+    ): SavedSearch
+    getSavedSearchById(uuid: String!): SavedSearch
   }
 `;
