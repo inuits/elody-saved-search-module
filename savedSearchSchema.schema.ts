@@ -1,6 +1,10 @@
 import { gql } from "graphql-modules";
 
 export const savedSearchSchema = gql`
+  enum BaseFieldType {
+    privacyTypeField
+  }
+
   type MinMax {
     min: Int
     max: Int
