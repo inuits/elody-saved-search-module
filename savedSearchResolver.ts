@@ -15,13 +15,12 @@ const baseSetOffResolvers = {
   allowedViewModes: simpleReturn,
   relationValues: resolveRelations,
   entityView: simpleReturn,
-  teaserMetadata: simpleReturn,
-  deleteQueryOptions: simpleReturn,
+  teaserMetadata: simpleReturn
 };
 
 export const savedSearchResolver: Resolvers<ContextValue> = {
   SavedSearch: {
-    ...baseSetOffResolvers,
+    ...baseSetOffResolvers
   },
   Query: {
   },
