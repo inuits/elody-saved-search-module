@@ -21,5 +21,6 @@ export const savedSearchSchema = gql`
     advancedFilters: AdvancedFilters
     sortOptions: SortOptions
     bulkOperationOptions: BulkOperationOptions
+    deleteQueryOptions: DeleteQueryOptions
   }
 `;
