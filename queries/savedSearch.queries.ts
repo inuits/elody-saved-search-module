@@ -8,6 +8,12 @@ export const savedSearch = gql`
     }
     allowedViewModes {
       viewModes(input: [ViewModesList, ViewModesGrid])
+      viewModes(input: [
+        { viewMode: ViewModesList }
+        { viewMode: ViewModesGrid }
+      ]) {
+        ...viewModes
+      }
     }
     teaserMetadata {
       title: metaData {
