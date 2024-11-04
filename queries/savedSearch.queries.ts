@@ -7,7 +7,6 @@ export const savedSearch = gql`
       filters: keyValue(key: "filters", source: metadata)
     }
     allowedViewModes {
-      viewModes(input: [ViewModesList, ViewModesGrid])
       viewModes(input: [
         { viewMode: ViewModesList }
         { viewMode: ViewModesGrid }
