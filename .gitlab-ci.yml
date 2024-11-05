@@ -28,7 +28,7 @@ build-job:       # build and publish to nexus
       - package.json
   stage: build
   before_script:
-    - ls -la ~/
+    - ls -la ~/app
     - corepack enable
     - corepack prepare pnpm@7.26.0 --activate
   script:
