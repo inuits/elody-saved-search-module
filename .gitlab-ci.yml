@@ -30,7 +30,6 @@ build-job:       # build and publish to nexus
   before_script:
     - corepack enable
     - corepack prepare pnpm@7.26.0 --activate
-    - cd /app/inuits-dams-graphql-service
   script:
     - echo "Building and publishing the code..."
     - echo //nexus.inuits.io/repository/:_authToken=${NPM_CONFIG__AUTH_TOKEN} > ~/.npmrc
@@ -51,7 +50,7 @@ build-job:       # build and publish to nexus
         pnpm install
         ls -la .
 
-        cp ./codegen.ts ./codegen.ts # copy the codegen from the base image
+        cp /app/inuits-dams-graphql-service/codegen.ts ./codegen.ts # copy the codegen from the base image
         mkdir ./schemas
         find ./node_modules/ -type f -name "*.schema.ts" -exec cp -n {} ./schemas \;
         find ./node_modules/ -type f -name "*.queries.ts" -exec cp -n {} ./schemas \;
