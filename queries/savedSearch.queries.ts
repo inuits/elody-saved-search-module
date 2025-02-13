@@ -89,31 +89,32 @@ export const savedSearch = gql`
   fragment filtersForSavedSearch on SavedSearch {
     advancedFilters {
       user: advancedFilter(
-        type: selection
+        type: text
         key: ["elody:1|relations.hasUser.key"]
         label: "metadata.labels.user"
         isDisplayedByDefault: true
-        advancedFilterInputForRetrievingOptions: [
-          {
-            type: text
-            key: ["elody:1|relations.hasUser.key"]
-            value: "*"
-            metadata_key_as_label: "metadata.email.value"
-            item_types: ["savedSearch"]
-          }
-        ]
+#        advancedFilterInputForRetrievingOptions: [
+#          {
+#            type: text
+#            key: ["elody:1|relations.hasUser.key"]
+#            value: "*"
+#            metadata_key_as_label: "metadata.email.value"
+#            item_types: ["savedSearch"]
+#          }
+#        ]
       ) {
         type
         key
         label
         isDisplayedByDefault
-        advancedFilterInputForRetrievingOptions {
-          type
-          key
-          value
-          metadata_key_as_label
-          item_types
-        }
+#        advancedFilterInputForRetrievingOptions {
+#          type
+#          key
+#          value
+#          metadata_key_as_label
+#          item_types
+#        }
+        defaultValue(value: "session-$email")
         tooltip(value: true)
       }
       title: advancedFilter(
