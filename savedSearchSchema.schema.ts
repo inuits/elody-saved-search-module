@@ -22,6 +22,6 @@ export const savedSearchSchema = gql`
     sortOptions: SortOptions
     bulkOperationOptions: BulkOperationOptions
     deleteQueryOptions: DeleteQueryOptions
-    mapComponent: MapComponent
+    mapElement: MapElement
   }
 `;
