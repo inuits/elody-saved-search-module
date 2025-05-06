@@ -21,6 +21,7 @@ export const savedSearchSchema = gql`
     advancedFilters: AdvancedFilters
     sortOptions: SortOptions
     bulkOperationOptions: BulkOperationOptions
+    previewComponent: PreviewComponent
     deleteQueryOptions: DeleteQueryOptions
     mapElement: MapElement
   }
