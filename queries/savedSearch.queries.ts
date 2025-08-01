@@ -25,10 +25,10 @@ export const savedSearch = gql`
 
   fragment fullSavedSearch on SavedSearch {
     intialValues {
-      title: keyValue(key: "title", source: metadata)
-      applicableType: keyValue(key: "applicableType", source: metadata)
+      applicable_type: keyValue(key: "applicable_type", source: metadata)
       filters: keyValue(key: "filters", source: metadata)
       privacy: keyValue(key: "privacy", source: metadata)
+      title: keyValue(key: "title", source: metadata)
     }
     relationValues
     entityView {
@@ -99,7 +99,7 @@ export const savedSearch = gql`
             key: ["elody:1|relations.hasUser.key"]
             value: "*"
             metadata_key_as_label: "metadata.email.value"
-            item_types: ["savedSearch"]
+            item_types: ["saved_search"]
           }
         ]
       ) {
@@ -131,12 +131,12 @@ export const savedSearch = gql`
       }
       type: advancedFilter(type: type) {
         type
-        defaultValue(value: "savedSearch")
+        defaultValue(value: "saved_search")
         hidden(value: true)
       }
-      applicableType: advancedFilter(
+      applicable_type: advancedFilter(
         type: text
-        key: ["elody:1|metadata.applicableType.value"]
+        key: ["elody:1|metadata.applicable_type.value"]
       ) {
         type
         key
@@ -176,8 +176,8 @@ export const savedSearch = gql`
             icon(input: Create)
             actionType(input: submitWithExtraMetadata)
             actionQuery(input: "CreateEntity")
-            creationType(input: savedSearch)
-          }          
+            creationType(input: saved_search)
+          }
         }
       }
     }

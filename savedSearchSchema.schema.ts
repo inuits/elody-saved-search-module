@@ -2,7 +2,7 @@ import { gql } from "graphql-modules";
 
 export const savedSearchSchema = gql`
   enum Entitytyping {
-    savedSearch
+    saved_search
   }
 
   enum BaseFieldType {
