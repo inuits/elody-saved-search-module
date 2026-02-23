@@ -6,8 +6,4 @@
 include:
   - project: 'inuits/gitlab-ci/pipeline-templates'
     file: 'pipelines/applications/graphql-module-pipeline.yml'
-    ref: 'v3.6.4'
-
-variables:
-  GRAPHQL_IMAGE: 'digipolis/dams-v2-dams-graphql'
-  MOVE_SCHEMA: 'savedSearchSchema.schema.ts'
+    ref: 'v4.15.0'

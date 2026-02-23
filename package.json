@@ -1,28 +1,24 @@
 {
   "name": "saved-search-module",
-  "version": "0.0.51",
+  "version": "0.0.52",
   "license": "MIT",
   "main":"./savedSearchModule.ts",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "graphql-modules": "^2.1.0",
-    "base-graphql": "*",
-    "@graphql-codegen/add": "^3.2.1",
-    "@graphql-codegen/cli": "^2.16.5",
-    "@graphql-codegen/graphql-modules-preset": "^2.5.12",
-    "@graphql-codegen/typed-document-node": "2.3.13",
-    "@graphql-codegen/typescript": "^2.8.8",
-    "@graphql-codegen/typescript-operations": "^2.5.13",
-    "@graphql-codegen/typescript-resolvers": "^2.7.13",
+    "@graphql-codegen/add": "^4.0.1",
+    "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/graphql-modules-preset": "^4.0.11",
     "@types/node": "^18.11.14",
-    "typescript": "^4.3.5",
-    "graphql": "^16.6.0"
+    "base-graphql": "*",
+    "graphql": "^16.9.0",
+    "graphql-modules": "^2.1.0",
+    "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "main": "./dist/dams/inuits-dams-saved-search-module/savedSearchModule.js",
-    "types": "./types/dams/inuits-dams-saved-search-module/savedSearchModule.d.ts",
+    "main": "./dist/mediafileModule.js",
+    "types": "./types/mediafileModule.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }

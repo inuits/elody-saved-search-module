@@ -6,7 +6,7 @@ import {
 } from "base-graphql";
 import {
   Resolvers,
-} from "../../generated-types/type-defs";
+} from "./generated-types/type-defs";
 
 const baseSetOffResolvers = {
   id: resolveId,
