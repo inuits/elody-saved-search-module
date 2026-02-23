@@ -1,6 +1,6 @@
 {
   "name": "saved-search-module",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "license": "MIT",
   "main":"./savedSearchModule.ts",
   "scripts": {
@@ -10,6 +10,7 @@
     "@graphql-codegen/add": "^4.0.1",
     "@graphql-codegen/cli": "^4.0.1",
     "@graphql-codegen/graphql-modules-preset": "^4.0.11",
+    "@graphql-codegen/typescript-resolvers": "^2.7.13",
     "@types/node": "^18.11.14",
     "base-graphql": "*",
     "graphql": "^16.9.0",
@@ -17,8 +18,8 @@
     "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "main": "./dist/mediafileModule.js",
-    "types": "./types/mediafileModule.d.ts",
+    "main": "./dist/savedSearchModule.js",
+    "types": "./types/savedSearchModule.d.ts",
     "registry": "https://nexus.inuits.io/repository/npm-private"
   }
 }
