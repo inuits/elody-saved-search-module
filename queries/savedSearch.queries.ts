@@ -41,7 +41,9 @@ export const savedSearch = gql`
               shown(input: true)
             }
             info: panels {
-              label(input: "panel-labels.keyword-info")
+              panelHeaderContent(panelHeaderContentInput: { label: "panel-labels.keyword-info" }) {
+                label
+              }
               panelType(input: metadata)
               isCollapsed(input: false)
               isEditable(input: true)
