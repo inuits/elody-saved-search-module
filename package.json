@@ -12,10 +12,15 @@
     "@graphql-codegen/graphql-modules-preset": "^4.0.11",
     "@graphql-codegen/typescript-resolvers": "^2.7.13",
     "@types/node": "^22.13.14",
-    "base-graphql": "*",
     "graphql": "^16.9.0",
     "graphql-modules": "^2.1.0",
     "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "base-graphql": "*"
+  },
+  "devDependencies": {
+    "base-graphql": "*"
   },
   "publishConfig": {
     "main": "./dist/savedSearchModule.js",
