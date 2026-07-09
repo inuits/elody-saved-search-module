@@ -1,92 +1,98 @@
-# Inuits DAMS Saved Search Module
+<p align="center">
+  <svg width="96" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#55b9a7" d="M 54.878 248.942 C 40.536 215.22 22.759 182.66 16.294 145.866 C 13.784 132.848 12.206 119.661 11.579 106.412 C 9.425 30.574 56.091 -9.975 130.435 2.107 C 177.572 9.753 218.313 32.417 258.919 55.625 C 278.179 73.989 303.565 85.184 319.524 107.64 C 298.918 118.562 278.111 129.074 257.841 140.544 C 246.567 147.364 232.92 148.859 220.467 144.639 C 185.584 134.33 150.233 125.662 114.945 116.65 C 106.192 114.467 96.225 109.007 88.953 119.381 C 82.759 128.187 88.482 136.311 92.32 144.093 C 109.29 178.359 126.327 212.491 143.429 246.484 C 148.041 253.2 149.813 261.508 148.347 269.556 C 141.208 295.017 134.271 320.549 127.271 346.009 C 97.911 317.75 77.776 282.322 54.878 248.942 Z"/>
+    <path fill="#096c73" d="M 319.39 107.64 C 303.565 85.184 278.179 73.989 258.783 55.625 C 304.036 26.138 353.059 8.798 406.931 9.959 C 475.214 11.325 512.453 67.164 496.223 141.566 C 488.526 175.397 475.859 207.867 458.649 237.882 C 454.473 245.529 448.411 252.628 449.962 262.389 C 440.196 264.504 437.235 273.858 432.117 280.614 C 420.129 296.178 409.893 313.109 394.206 325.462 C 378.783 303.003 369.828 277.065 356.359 253.584 C 350.872 244.059 349.834 232.557 353.53 222.183 C 364.171 184.844 373.733 147.097 383.229 109.416 C 385.112 102.248 387.134 94.739 380.94 88.938 C 373.665 82.109 366.191 85.933 358.852 89.415 C 345.718 95.491 332.588 101.361 319.39 107.64 Z"/>
+    <path fill="#165c74" d="M 394.206 325.531 C 409.893 313.174 420.129 296.247 432.117 280.683 C 437.235 273.858 440.196 264.573 449.962 262.456 C 468.092 296.173 480.798 332.603 487.604 370.377 C 503.091 463.758 445.718 517.14 354.473 495.023 C 313.465 485.125 277.708 464.101 241.006 444.783 L 178.38 393.86 C 200.199 382.325 222.284 371.198 243.833 359.116 C 254.419 352.67 267.236 351.175 278.986 355.018 C 315.887 365.601 353.059 374.61 390.501 384.439 C 397.773 386.351 404.709 388.195 410.703 381.778 C 417.907 374.132 413.261 366.759 410.029 359.457 C 404.641 348.055 399.388 336.795 394.206 325.531 Z"/>
+    <path fill="#355ba9" d="M 178.38 393.86 L 241.276 444.783 C 189.627 479.392 133.129 497.21 71.443 487.514 C 22.691 479.87 -5.189 435.089 0.805 378.705 C 5.519 334.677 22.691 294.676 45.115 256.995 C 47.201 253.515 51.848 251.605 55.149 248.942 C 78.044 282.322 98.178 317.75 127.403 346.281 C 124.105 362.118 120.67 377.886 117.706 394.065 C 114.608 410.994 122.959 418.365 138.583 412.154 C 151.781 406.49 164.914 399.936 178.38 393.86 Z"/>
+  </svg>
+</p>
 
+<p align="center">Part of <a href="https://elody.eu">Elody</a> — the open semantic data platform.</p>
 
+# Saved Search Module
 
-## Getting started
+A schema-only `graphql-modules` module that adds the `SavedSearch` entity type to the Elody GraphQL surface. No data sources, no Express endpoints, no custom resolver logic — a saved search is just an entity managed by collection-api via the base `CollectionAPI` data source. This module's job is to declare the type and expose the client-side query fragments the PWA uses to build the "save this search" form.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## What's included
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+| Layer | What it adds |
+|-------|-------------|
+| GraphQL schema | `SavedSearch` type (implements the base `Entity` interface), `Entitytyping.saved_search` enum value, `BaseFieldType.privacyTypeField` for the privacy dropdown |
+| GraphQL resolvers | Field resolvers for `SavedSearch` — all delegate to base-graphql helpers (`resolveId`, `resolveRelations`, `simpleReturn`) |
+| Client queries | Fragments (`minimalSavedSearch`, `fullSavedSearch`, `savedSearchSortOptions`, `filtersForSavedSearch`) and one query (`GetSaveSearchForm`) consumed by the PWA |
+| DataSources | None — persistence goes through `CollectionAPI` from `base-graphql` |
+| Express endpoints | None |
 
-## Add your files
+---
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## GraphQL API
 
+### Types
+
+```graphql
+type SavedSearch implements Entity {
+  id: String!
+  uuid: String!
+  type: String!
+  intialValues: [MetaData]!
+  entityView: EntityView!
+  teaserMetadata: [MetaData]
+  allowedViewModes: [ViewMode]
+  relationValues: [Relation]
+  advancedFilters: [AdvancedFilter]
+  sortOptions: [SortOption]
+  bulkOperationOptions: BulkOperationOptions
+  previewComponent: PreviewComponent
+  deleteQueryOptions: DeleteQueryOptions
+  mapElement: MapElement
+}
+
+enum Entitytyping { saved_search, ... }
+enum BaseFieldType { privacyTypeField, ... }
 ```
-cd existing_repo
-git remote add origin https://gitlab.inuits.io/rnd/inuits/dams/inuits-dams-saved-search-module.git
-git branch -M main
-git push -uf origin main
+
+### Queries / Mutations
+
+None declared by this module. Saved searches are read via the standard base `Entity` / `Entities` queries (with `type: saved_search`) and created via the standard `mutateEntityValues` / `CreateEntity` flow — same as any other entity type.
+
+---
+
+## Client-side queries
+
+The `queries/savedSearch.queries.ts` file exports fragments and one query the PWA imports directly:
+
+| Export | Purpose |
+|--------|---------|
+| `minimalSavedSearch` | Fragment: title + filters from metadata. Use in list views. |
+| `fullSavedSearch` | Fragment: all metadata (title, applicable_type, filters, privacy) plus `relationValues` and the full `entityView` with metadata panels. Use in detail views. |
+| `savedSearchSortOptions` | Fragment: sort-by-title config. |
+| `filtersForSavedSearch` | Fragment: advanced filters for user, title, type, applicable_type. |
+| `GetSaveSearchForm` | Query: fetches the dynamic form for creating/editing a saved search (title, privacy, submit action). Wraps base's `GetDynamicForm`. |
+
+Frontend codegen picks these up alongside the client's own queries — no server-side counterpart is needed.
+
+---
+
+## Using the module
+
+Import and add it to `customModuleConfig.modules`:
+
+```ts
+import start, { ElodyModuleConfig } from 'base-graphql';
+import { savedSearchModule } from 'saved-search-module';
+
+const config: ElodyModuleConfig = {
+  modules: [savedSearchModule, /* ... */],
+  dataSources: { /* ... */ },
+};
+
+start({ customModuleConfig: config, /* ... */ });
 ```
 
-## Integrate with your tools
+No data sources or endpoints to wire in — the module is stateless from the server's point of view. Saved searches are stored, indexed, and queried by collection-api like any other entity.
 
-- [ ] [Set up project integrations](https://gitlab.inuits.io/rnd/inuits/dams/inuits-dams-saved-search-module/-/settings/integrations)
+---
 
-## Collaborate with your team
+## Extending
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+If a deployment needs a bespoke privacy model, extra fields, or a custom submit action, do it in the client's own schema/queries — this module is intentionally thin. Adding backend logic here is only justified if it's shared across multiple clients; per-client behavior belongs in the client's own configuration.
