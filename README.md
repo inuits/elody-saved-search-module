@@ -17,6 +17,8 @@ A schema-only `graphql-modules` module that adds the `SavedSearch` entity type t
 | Client queries | Fragments (`minimalSavedSearch`, `fullSavedSearch`, `savedSearchSortOptions`, `filtersForSavedSearch`) and one query (`GetSaveSearchForm`) consumed by the PWA |
 | DataSources | None — persistence goes through `CollectionAPI` from `base-graphql` |
 | Express endpoints | None |
+| App config | `features.savedSearch.enabled`, contributed by the module itself (see [Enabling the feature](#enabling-the-feature)) |
+| Permissions | `create:saved_search`, contributed by the module itself |
 
 ---
 
@@ -85,6 +87,36 @@ start({ customModuleConfig: config, /* ... */ });
 ```
 
 No data sources or endpoints to wire in — the module is stateless from the server's point of view. Saved searches are stored, indexed, and queried by collection-api like any other entity.
+
+---
+
+## Enabling the feature
+
+**Installing the module is what enables saved search. There is no app config to set and no permission to declare.**
+
+The module attaches two things to itself, and `base-graphql` picks them up from the installed module list:
+
+```ts
+elodyPermissions: {
+  'create:saved_search': { datasource: 'CollectionAPI', crud: 'post', uri: '/entities', body: { type: 'saved_search' } },
+},
+elodyFeatures: {
+  savedSearch: { enabled: true, permission: 'create:saved_search' },
+},
+```
+
+- `elodyPermissions` is merged into the permissions the GraphQL layer can evaluate. A client that declares the same key in its own `customPermissions` overrides it.
+- `elodyFeatures` is merged into `features` on `/api/app-configs`. Because the entry names a permission, the endpoint runs that permission check per request and reports `savedSearch.enabled: false` to a user who fails it. The PWA renders the "save this search" button on that flag alone — it performs no permission check of its own.
+
+So **removing the module from `modules` is how you turn saved search off** for a client.
+
+### Requirements on collection-api
+
+The permission check is a dry-run `POST /entities` with `{ "type": "saved_search" }`. Register `saved_search` as an object configuration in the client's collection-module before installing this module — as of this writing only `coghent-dams`, `digipolis-dams`, `podiumnet` and `vlacc-dams` do. How collection-api answers a dry-run create for an unregistered type has not been verified, so a client that installs the module without registering the type may see the feature reported as disabled.
+
+### Staleness
+
+`/api/app-configs` is fetched once when the PWA boots, so the check is evaluated once per session rather than per query. A permission change mid-session is not picked up until reload. Everything else in the permission layer uses a short-TTL cache instead.
 
 ---
 
