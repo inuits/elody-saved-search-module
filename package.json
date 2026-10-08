@@ -9,7 +9,6 @@
   "dependencies": {
     "@graphql-codegen/add": "^4.0.1",
     "@graphql-codegen/cli": "^4.0.1",
-    "@graphql-codegen/graphql-modules-preset": "^4.0.11",
     "@graphql-codegen/typescript-resolvers": "^2.7.13",
     "@types/node": "^22.13.14",
     "graphql": "^16.9.0",
